@@ -1,23 +1,15 @@
 package com.cdt.consumer;
 
 
-import static com.toomuchcoding.jsonassert.JsonAssertion.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
-import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.StubTrigger;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
-import org.springframework.cloud.contract.verifier.messaging.internal.ContractVerifierMessage;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -33,10 +25,10 @@ public class ListenerTest {
   StubTrigger stubTrigger;
 
   @Autowired
-  UserPresenceListener userPresenceListener;
+  UserListener userListener;
 
   @Test
-  public void shouldReceiveNotification() throws JSONException {
+  public void shouldReceiveNotification() {
 
     /** trigger method launches the required contract scenario.
     * We will refer to the particular part of the scenario via label that was specified way back in the YAML.
@@ -50,9 +42,9 @@ public class ListenerTest {
     /** To test the listener, we just trigger the message, and make sure that the number of the available users
     * is not empty, thus indicating a delivered message.*/
 
-    assertThat(this.userPresenceListener.getAvailableUsers()).hasSize(1);
-    assertThat(this.userPresenceListener.getAvailableUsers()).contains("amadeus");
-
+    assertThat(this.userListener.getAvailableUsers()).hasSize(1);
+    assertThat(this.userListener.getAvailableUsers().get(0).getUser()).isEqualTo("joe");
+    assertThat(this.userListener.getAvailableUsers().get(0).getId()).isEqualTo(987);
 
 
   }

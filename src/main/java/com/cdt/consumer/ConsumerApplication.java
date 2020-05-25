@@ -23,12 +23,12 @@ public class ConsumerApplication {
   }
 
   private DirectExchange userPresenceExchange() {
-    return new DirectExchange("user-presence");
+    return new DirectExchange("user-presence-exchange");
   }
 
   @Bean
   Queue userPresenceQueue() {
-    return new Queue("user-presence");
+    return new Queue("user-presence-queue");
   }
 
   @Bean
