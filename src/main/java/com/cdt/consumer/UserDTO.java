@@ -1,6 +1,6 @@
 package com.cdt.consumer;
 
-public class UserGoesOnlineMessage {
+public class UserDTO {
     private String user;
 
     public String getUser() {

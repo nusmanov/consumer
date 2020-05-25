@@ -13,9 +13,9 @@ public class UserPresenceListener {
     private List<String> availableUsers = new ArrayList<>();
 
     @RabbitListener(queues = "user-presence")
-    public void handle(UserGoesOnlineMessage userGoesOnlineMessage) {
-        this.availableUsers.add(userGoesOnlineMessage.getUser());
-        logger.info("User added: {} / total {}", userGoesOnlineMessage.getUser(), availableUsers.size());
+    public void handle(UserDTO userDTO) {
+        this.availableUsers.add(userDTO.getUser());
+        logger.info("User added: {} / total {}", userDTO.getUser(), availableUsers.size());
 
     }
 
