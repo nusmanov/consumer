@@ -2,6 +2,10 @@
 Spring Cloud Contract - Messaging / RabbitMQ - consumer (producer driven)
 
 
-# The Test wich runs against the RabbitMQ Stub,
-which should be created and installed in the producer repo(https://github.com/nusmanov/procuer) to the local maven repository.
+# Consumer Test
+* First please create and install the RabbitMQ Stub to the local repo from the producer repo ( https://github.com/nusmanov/producer )
+* Afterwards you can run the Consumer Test against the RabbitMQ Stub.
+
 https://github.com/nusmanov/consumer/blob/master/src/test/java/com/cdt/consumer/ListenerTest.java
+
+
